@@ -1,6 +1,5 @@
 package hu.advancedweb.scott.runtime.report;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,17 +15,24 @@ import hu.advancedweb.scott.runtime.track.StateRegistry;
  */
 public class FailureRenderer {
 
+	public static String render(String testClassName, String testMethodName) {
+		return render(testClassName, testMethodName, null);
+	}
+
 	public static String render(String testClassName, String testMethodName, Throwable throwable) {
 		MethodSource methodSource = getTestMethodSource(testClassName, testMethodName);
 
 		final ScottReport scottReport = new ScottReport();
-		
+
 		if (methodSource != null) {
 			fillSource(scottReport, methodSource);
 		}
-		
+
 		fillTrackedData(scottReport);
-		fillException(scottReport, methodSource, throwable);
+
+		if (throwable != null) {
+			fillException(scottReport, methodSource, throwable);
+		}
 
 		return renderPlain(scottReport);
 	}
@@ -259,17 +265,6 @@ public class FailureRenderer {
 		return exceptionMessageLines;
 	}
 
-	private static String[] getVariableSnapshotComment(Snapshot variableSnapshot) {
-		final String variableSnapshotText;
-		if (variableSnapshot.name != null) {
-			variableSnapshotText = variableSnapshot.name + "=" + variableSnapshot.value.trim();
-		} else {
-			variableSnapshotText = variableSnapshot.value.trim();
-		}
-		String[] variableSnapshotTextLines = variableSnapshotText.split("\\n");
-		return variableSnapshotTextLines;
-	}
-	
 	private static void renderComment(StringBuilder sb, String lineText, String comment, boolean isFirstCommentInThisLine) {
 		if (!isFirstCommentInThisLine) {
 			addBlankLine(sb, lineText);

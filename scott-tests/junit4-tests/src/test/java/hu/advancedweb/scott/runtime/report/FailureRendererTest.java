@@ -24,13 +24,13 @@ public class FailureRendererTest {
 
     @Test
     public void verifySingleInt() {
-        int i = 42;
+        @SuppressWarnings("unused")
+		int i = 42;
         String resultText = FailureRenderer.render("xxxxx", "yyyyy", new RuntimeException("bar"));
         assertSingleInt(resultText);
     }
 
     private void assertSingleInt(String resultText) {
-        System.out.println(resultText);
         assertThat("variable loop", resultText, containsString("i=42"));
     }
 

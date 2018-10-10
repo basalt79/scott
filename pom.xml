@@ -8,8 +8,11 @@
 	<version>2.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<name>Scott Test Reporter - POM</name>
+
 	<modules>
 		<module>scott</module>
+		<module>scott-maven-plugin</module>
 		<module>scott-tests</module>
 	</modules>
 </project>
