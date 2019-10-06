@@ -3,12 +3,11 @@ package hu.advancedweb.scott.instrumentation.transformation;
 
 import java.lang.instrument.UnmodifiableClassException;
 
+import hu.advancedweb.scott.runtime.ScottReportingRule;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.MethodNode;
-
-import hu.advancedweb.scott.runtime.ScottReportingRule;
 
 /**
  * Transformes the constructor to instantiate the `scottReportingRule` field.
@@ -16,12 +15,12 @@ import hu.advancedweb.scott.runtime.ScottReportingRule;
  * @author David Csakvari
  */
 public class ConstructorTransformerMethodVisitor extends MethodNode {
-	
+
 	private String className;
 	private MethodVisitor next;
 
 	public ConstructorTransformerMethodVisitor(MethodVisitor next, final int access, final String name, final String desc, final String signature, final String[] exceptions, String className) {
-		super(Opcodes.ASM5, access, name, desc, signature, exceptions);
+		super(Opcodes.ASM7, access, name, desc, signature, exceptions);
 		this.next = next;
 		this.className = className;
 	}
@@ -40,7 +39,7 @@ public class ConstructorTransformerMethodVisitor extends MethodNode {
 			super.visitInsn(Opcodes.DUP);
 			super.visitMethodInsn(Opcodes.INVOKESPECIAL, Type.getInternalName(ScottReportingRule.class), "<init>", "()V", false);
 
-			super.visitFieldInsn(Opcodes.PUTFIELD, 
+			super.visitFieldInsn(Opcodes.PUTFIELD,
 					className, "scottReportingRule",
 					Type.getDescriptor(ScottReportingRule.class));
 		}
@@ -50,7 +49,6 @@ public class ConstructorTransformerMethodVisitor extends MethodNode {
 	
 	@Override
 	public void visitEnd() {
-		// TODO: check for no constructor
 		super.visitEnd();
 		accept(next);
 	}

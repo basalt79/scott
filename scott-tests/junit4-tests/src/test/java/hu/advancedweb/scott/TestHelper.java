@@ -14,8 +14,7 @@ class TestHelper {
 		Collections.reverse(states);
 		
 		for (StateData localVariableState : states) {
-			String nameOfLocalVariableState = StateRegistry.getLocalVariableName(localVariableState.key, localVariableState.lineNumber);
-			if (nameOfLocalVariableState.equals(variableName)) {
+			if (localVariableState.name.equals(variableName)) {
 				return localVariableState.value;
 			}
 		}
@@ -28,14 +27,14 @@ class TestHelper {
 		Collections.reverse(states);
 		
 		for (StateData localVariableState : states) {
-			if (localVariableState.key.equals(fieldName)) {
+			if (localVariableState.name.equals(fieldName)) {
 				return localVariableState.value;
 			}
 		}
 		
 		return null;
 	}
-
+	
 	public static String wrapped(String original) {
 		char wrappingChar = '"';
 		return new StringBuilder().append(wrappingChar).append(original).append(wrappingChar).toString();

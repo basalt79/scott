@@ -26,7 +26,7 @@ public class MethodSource {
 	private final String path;
 	private final String methodName;
 	private int beginLine;
-	private List<String> reportLines = new ArrayList<String>();
+	private List<String> reportLines = new ArrayList<>();
 	private String className;
 
 	public MethodSource(String className, String methodName) throws IOException {
@@ -36,14 +36,14 @@ public class MethodSource {
 		
 		final String containerClassFileName;
 		if (className.contains("$")) {
-			containerClassFileName = className.substring(0, className.indexOf("$"));
+			containerClassFileName = className.substring(0, className.indexOf('$'));
 		} else {
 			containerClassFileName = className;
 		}
 		
 		final String scopedClassName;
 		if (className.contains(".")) {
-			scopedClassName = className.substring(className.lastIndexOf(".") + 1);
+			scopedClassName = className.substring(className.lastIndexOf('.') + 1);
 		} else {
 			scopedClassName = className;
 		}
@@ -67,23 +67,11 @@ public class MethodSource {
 	}
 	
 	private CompilationUnit getCompilationUnit(String testSourcePath) throws IOException {
-		InputStream in = null;
-		CompilationUnit cu = null;
-		try {
-			in = new FileInputStream(new File(testSourcePath));
-			cu = JavaParser.parse(in);
+		try(InputStream in = new FileInputStream(new File(testSourcePath))) {
+			return  JavaParser.parse(in);
 		} catch (ParseException e) {
-			e.printStackTrace();
 			throw new IOException(e);
-		} finally {
-			try {
-				in.close();
-			} catch (IOException e) {
-				// Ignore.
-			}
 		}
-		
-		return cu;
 	}
 	
 	public String getPath() {

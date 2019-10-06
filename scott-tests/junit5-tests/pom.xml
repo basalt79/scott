@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.advancedweb</groupId>
 	<artifactId>junit5-tests</artifactId>
-	<version>3.3.0</version>
+	<version>3.5.0</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -61,10 +61,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.8.0</version>
 				<configuration>
-					<source>1.9</source>
-					<target>1.9</target>
+					<release>11</release>
 				</configuration>
 			</plugin>
 		</plugins>

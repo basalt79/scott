@@ -4,7 +4,7 @@
 	
 	<groupId>hu.advancedweb</groupId>
 	<artifactId>scott</artifactId>
-	<version>3.3.0</version>
+	<version>3.5.0</version>
 	<url>https://github.com/dodie/scott</url>
 
 	<properties>
@@ -81,7 +81,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
+				<version>3.1.0</version>
+				<configuration>
+					<source>7</source>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -129,12 +132,12 @@
 		<dependency>
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm</artifactId>
-			<version>6.0</version>
+			<version>7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm-util</artifactId>
-			<version>6.0</version>
+			<version>7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.javaparser</groupId>
@@ -164,6 +167,18 @@
 			<artifactId>cucumber-junit</artifactId>
 			<version>1.2.5</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-java</artifactId>
+		    <version>2.3.1</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-junit</artifactId>
+		    <version>2.3.1</version>
+		    <scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

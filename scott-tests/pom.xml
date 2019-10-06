@@ -6,12 +6,14 @@
 	<groupId>hu.advancedweb</groupId>
 	<artifactId>scott-tests</artifactId>
 	<packaging>pom</packaging>
-	<version>3.3.0</version>
+	<version>3.5.0</version>
 	
 	<name>Scott Test Reporter - Tests</name>
 
 	<modules>
 		<module>junit4-tests</module>
 		<module>junit5-tests</module>
+		<module>configuration-example-classes</module>
+		<module>configuration-based-tests</module>
 	</modules>
 </project>
